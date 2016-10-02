@@ -66,5 +66,10 @@
     <Compile Include="Assets\Scripts\BallControl.cs" />
     <Compile Include="Assets\Scripts\PlayerControllerScript.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Shaders\Dither.shader" />
+    <None Include="Assets\Shaders\Posterize.shader" />
+    <None Include="Assets\Shaders\RetroPixelMax.shader" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
