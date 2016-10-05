@@ -26,16 +26,18 @@ public class PaddleAI : MonoBehaviour {
         {
             if (isHorizontalMovement)
             {
-                if(Ball.position.x <= MaxX && Ball.position.x <= MinX)
+                if(Ball.position.x <= MaxX && Ball.position.x >= MinX)
                 {
                     transform.position = Vector3.MoveTowards(transform.position, new Vector3(Ball.position.x, initialY, initialZ), step);
                 }
-                
             }
 
             else
             {
-                transform.position = Vector3.MoveTowards(transform.position, new Vector3(initialX, Ball.position.x, initialZ), step);
+                if (Ball.position.y <= MaxY && Ball.position.y >= MinY)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(initialX, Ball.position.x, initialZ), step);
+                }
             }
             
         }
@@ -45,11 +47,19 @@ public class PaddleAI : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-
+        if (coll.gameObject.tag == "Ball")
+        {
+            Ball = GameObject.FindGameObjectWithTag("Ball").transform;
+            targetAcquired = true;
+        }
     }
 
     void OnTriggerExit2D(Collider2D coll)
     {
-
+        if (coll.gameObject.tag == "Ball")
+        {
+            targetAcquired = false;
+            Ball = null;
+        }
     }
 }
