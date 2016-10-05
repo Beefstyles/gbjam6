@@ -13,7 +13,7 @@ public class BallControl : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         dir = new Vector3(xDir, yDir, 0F);
         dir = dir.normalized;
-        rb.AddForce(dir * 50);
+        rb.velocity = dir * 1;
 	}
 	
 	// Update is called once per frame

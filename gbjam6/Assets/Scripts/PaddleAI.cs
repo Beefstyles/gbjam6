@@ -4,11 +4,11 @@ using System.Collections;
 public class PaddleAI : MonoBehaviour {
 
     public Transform Ball;
-    private float speed = 0.1F;
+    private float speed = 10F;
     private float initialX, initialY, initialZ;
     public float MinX, MaxX, MinY, MaxY;
     public bool isHorizontalMovement;
-    private bool targetAcquired;
+    public bool targetAcquired;
     
 	// Use this for initialization
 	void Start () {
@@ -49,6 +49,7 @@ public class PaddleAI : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Ball")
         {
+            Debug.Log("Ball");
             Ball = GameObject.FindGameObjectWithTag("Ball").transform;
             targetAcquired = true;
         }
