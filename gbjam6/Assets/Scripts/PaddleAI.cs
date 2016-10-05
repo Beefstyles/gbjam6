@@ -6,11 +6,13 @@ public class PaddleAI : MonoBehaviour {
     public Transform Ball;
     private float speed = 0.1F;
     private float initialX, initialY, initialZ;
- 
-    
+    public float MinX, MaxX, MinY, MaxY;
+    public bool isHorizontalMovement;
+    private bool targetAcquired;
     
 	// Use this for initialization
 	void Start () {
+        
         initialX = transform.position.x;
         initialY = transform.position.y;
         initialZ = transform.position.z;
@@ -20,6 +22,34 @@ public class PaddleAI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(Ball.position.x, initialY, initialZ), step);
+        if (targetAcquired)
+        {
+            if (isHorizontalMovement)
+            {
+                if(Ball.position.x <= MaxX && Ball.position.x <= MinX)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(Ball.position.x, initialY, initialZ), step);
+                }
+                
+            }
+
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(initialX, Ball.position.x, initialZ), step);
+            }
+            
+        }
+        
+        
 	}
+
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+
+    }
+
+    void OnTriggerExit2D(Collider2D coll)
+    {
+
+    }
 }
