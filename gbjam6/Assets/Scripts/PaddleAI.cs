@@ -13,7 +13,7 @@ public class PaddleAI : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-        
+        Ball = null;
         initialX = transform.position.x;
         initialY = transform.position.y;
         initialZ = transform.position.z;
@@ -51,8 +51,11 @@ public class PaddleAI : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Ball")
         {
-            Debug.Log("Ball");
-            Ball = GameObject.FindGameObjectWithTag("Ball").transform;
+            if(Ball == null)
+            {
+                Ball = GameObject.FindGameObjectWithTag("Ball").transform;
+            }
+            
             targetAcquired = true;
         }
     }
