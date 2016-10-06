@@ -13,7 +13,7 @@ public class BallControl : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         dir = new Vector3(xDir, yDir, 0F);
         dir = dir.normalized;
-        rb.velocity = dir * 1;
+        rb.velocity = dir * 3;
 	}
 	
 	// Update is called once per frame

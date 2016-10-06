@@ -9,6 +9,7 @@ public class PaddleAI : MonoBehaviour {
     public float MinX, MaxX, MinY, MaxY;
     public bool isHorizontalMovement;
     public bool targetAcquired;
+    public Vector3 testPos;
     
 	// Use this for initialization
 	void Start () {
@@ -16,7 +17,7 @@ public class PaddleAI : MonoBehaviour {
         initialX = transform.position.x;
         initialY = transform.position.y;
         initialZ = transform.position.z;
-        Ball = GameObject.FindGameObjectWithTag("Ball").transform;
+        //Ball = GameObject.FindGameObjectWithTag("Ball").transform;
 	}
 	
 	// Update is called once per frame
@@ -24,6 +25,7 @@ public class PaddleAI : MonoBehaviour {
         float step = speed * Time.deltaTime;
         if (targetAcquired)
         {
+            testPos = Ball.transform.position;
             if (isHorizontalMovement)
             {
                 if(Ball.position.x <= MaxX && Ball.position.x >= MinX)
@@ -36,7 +38,7 @@ public class PaddleAI : MonoBehaviour {
             {
                 if (Ball.position.y <= MaxY && Ball.position.y >= MinY)
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(initialX, Ball.position.x, initialZ), step);
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(initialX, Ball.position.y, initialZ), step);
                 }
             }
             
