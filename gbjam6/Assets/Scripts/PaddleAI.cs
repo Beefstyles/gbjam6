@@ -4,7 +4,7 @@ using System.Collections;
 public class PaddleAI : MonoBehaviour {
 
     public Transform Ball;
-    private float speed = 10F;
+    private float speed = 7F;
     private float initialX, initialY, initialZ;
     public float MinX, MaxX, MinY, MaxY;
     public bool isHorizontalMovement;
@@ -19,7 +19,6 @@ public class PaddleAI : MonoBehaviour {
         initialY = transform.position.y;
         initialZ = transform.position.z;
         resetTimer = 0F;
-        //Ball = GameObject.FindGameObjectWithTag("Ball").transform;
     }
 	
 	// Update is called once per frame
