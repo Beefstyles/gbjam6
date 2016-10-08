@@ -23,7 +23,7 @@ public class GameControl : MonoBehaviour {
         if (PlayerAlive)
         {
             timer += Time.deltaTime;
-            TimerText.text = timer.ToString();
+            TimerText.text = Mathf.Round(timer).ToString();
         }
 	
 	}
