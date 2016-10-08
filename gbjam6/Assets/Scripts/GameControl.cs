@@ -50,4 +50,9 @@ public class GameControl : MonoBehaviour {
         yield return new WaitForSeconds(2);
         InstantiateBall();
     }
+
+    public IEnumerator StartDeath()
+    {
+        yield return new WaitForSeconds(1);
+    }
 }
