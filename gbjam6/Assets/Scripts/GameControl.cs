@@ -10,11 +10,12 @@ public class GameControl : MonoBehaviour {
     public Text TimerText;
     public float timer = 0F;
     public bool PlayerAlive;
+    private BallSpawnPoint[] ballPointSpawns;
 
 	void Start ()
     {
         PlayerAlive = true;
-
+        ballPointSpawns = FindObjectsOfType<BallSpawnPoint>();
     }
 
 	void Update ()
@@ -34,5 +35,10 @@ public class GameControl : MonoBehaviour {
     void InitialSpawn()
     {
         GameObject player = Instantiate(Player, PlayerSpawnLocation.position, Quaternion.identity) as GameObject;
+    }
+
+    void InstantiateBall()
+    {
+        GameObject ballClone = Instantiate(Ball, ballPointSpawns[Random.Range(0, ballPointSpawns.Length)].transform.position, Quaternion.identity) as GameObject;
     }
 }
