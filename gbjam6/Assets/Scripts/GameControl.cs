@@ -11,12 +11,16 @@ public class GameControl : MonoBehaviour {
     public float timer = 0F;
     public bool PlayerAlive;
     private BallSpawnPoint[] ballPointSpawns;
+    private float ballSpawnTimer;
     
 
 	void Start ()
     {
         PlayerAlive = true;
         ballPointSpawns = FindObjectsOfType<BallSpawnPoint>();
+        InitialSpawn();
+        StartCoroutine("DelayStart");
+        ballSpawnTimer = 0;
     }
 
 	void Update ()
@@ -25,6 +29,15 @@ public class GameControl : MonoBehaviour {
         {
             timer += Time.deltaTime;
             TimerText.text = Mathf.Round(timer).ToString();
+            if(ballSpawnTimer <= 4)
+            {
+                ballSpawnTimer += Time.deltaTime;
+            }
+            else
+            {
+                InstantiateBall();
+                ballSpawnTimer = 0;
+            }
         }
 	
 	}

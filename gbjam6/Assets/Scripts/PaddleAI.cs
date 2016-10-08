@@ -10,6 +10,7 @@ public class PaddleAI : MonoBehaviour {
     public bool isHorizontalMovement;
     public bool targetAcquired;
     public Vector3 testPos;
+    private float resetTimer;
     
 	// Use this for initialization
 	void Start () {
@@ -17,8 +18,9 @@ public class PaddleAI : MonoBehaviour {
         initialX = transform.position.x;
         initialY = transform.position.y;
         initialZ = transform.position.z;
+        resetTimer = 0F;
         //Ball = GameObject.FindGameObjectWithTag("Ball").transform;
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -41,13 +43,17 @@ public class PaddleAI : MonoBehaviour {
                     transform.position = Vector3.MoveTowards(transform.position, new Vector3(initialX, Ball.position.y, initialZ), step);
                 }
             }
-            
+        }
+
+        else if (!targetAcquired)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(initialX, initialY, initialZ),step);
         }
         
         
 	}
 
-    void OnTriggerEnter2D(Collider2D coll)
+    void OnTriggerStay2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "Ball")
         {
