@@ -7,7 +7,7 @@ public class GameControl : MonoBehaviour {
     public GameObject Ball;
     public GameObject Player;
     public Transform PlayerSpawnLocation;
-    public Text TimerText;
+    public Text TimerText, FinalScoreText, HighScoreText;
     public float timer = 0F;
     public bool PlayerAlive;
     private BallSpawnPoint[] ballPointSpawns;
