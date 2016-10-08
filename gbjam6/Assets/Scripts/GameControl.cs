@@ -11,6 +11,7 @@ public class GameControl : MonoBehaviour {
     public float timer = 0F;
     public bool PlayerAlive;
     private BallSpawnPoint[] ballPointSpawns;
+    
 
 	void Start ()
     {
@@ -30,8 +31,10 @@ public class GameControl : MonoBehaviour {
 
     void StartGame()
     {
-
+        InitialSpawn();
+        StartCoroutine("DelayStart");
     }
+
     void InitialSpawn()
     {
         GameObject player = Instantiate(Player, PlayerSpawnLocation.position, Quaternion.identity) as GameObject;
@@ -40,5 +43,11 @@ public class GameControl : MonoBehaviour {
     void InstantiateBall()
     {
         GameObject ballClone = Instantiate(Ball, ballPointSpawns[Random.Range(0, ballPointSpawns.Length)].transform.position, Quaternion.identity) as GameObject;
+    }
+
+    IEnumerator DelayStart()
+    {
+        yield return new WaitForSeconds(2);
+        InstantiateBall();
     }
 }
