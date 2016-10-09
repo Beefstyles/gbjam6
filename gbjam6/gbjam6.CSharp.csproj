@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\GameControl.cs" />
     <Compile Include="Assets\Scripts\PaddleAI.cs" />
     <Compile Include="Assets\Scripts\PlayerControllerScript.cs" />
+    <Compile Include="Assets\Scripts\StartGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\Dither.shader" />

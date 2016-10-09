@@ -53,7 +53,7 @@ public class PaddleAI : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(initialX, initialY, initialZ),step);
         }
 
-        if (resetTimer >= 2F)
+        if (resetTimer >= 0F)
         {
             resetTimer -= Time.deltaTime;
         }
