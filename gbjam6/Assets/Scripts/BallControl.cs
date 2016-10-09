@@ -7,11 +7,13 @@ public class BallControl : MonoBehaviour {
     Rigidbody2D rb;
     GameControl gameControl;
     Rigidbody2D collRb;
+    private AudioSource[] ballSounds; 
 
 	void Start ()
     {
         gameControl = FindObjectOfType<GameControl>();
         RandomDirection();
+        ballSounds = GetComponents<AudioSource>();
 	}
 	
 	void OnTriggerEnter2D(Collider2D coll)
@@ -20,11 +22,13 @@ public class BallControl : MonoBehaviour {
         {
             case ("Player"):
                 StartCoroutine(gameControl.StartDeath());
+                ballSounds[1].Play();
                 //Destroy(gameObject);
                 break;
             case ("PogoPoint"):
                 collRb = coll.GetComponentInParent<Rigidbody2D>();
                 collRb.AddForce(Vector2.up * 5);
+                ballSounds[0].Play();
                 Destroy(gameObject);        
                 break;
         }

@@ -8,13 +8,14 @@ public class PlayerControllerScript : MonoBehaviour {
     private float jumpSpeed = 15.0F;
     private float pogoForce = 30F;
     Rigidbody2D rb;
-
+    private AudioSource[] playerSounds;
     private bool isGrounded;
     private bool pogoUsed;
 
 	void Start ()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerSounds = GetComponents<AudioSource>();
     }
 	
 
@@ -27,6 +28,7 @@ public class PlayerControllerScript : MonoBehaviour {
             if (Input.GetButton("Fire1"))
             {
                 rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Force);
+                playerSounds[0].Play();
             }
         }
 
@@ -47,6 +49,7 @@ public class PlayerControllerScript : MonoBehaviour {
         {
             rb.AddForce(Vector2.up * pogoForce);
             pogoUsed = false;
+            playerSounds[1].Play();
         }
     }
 

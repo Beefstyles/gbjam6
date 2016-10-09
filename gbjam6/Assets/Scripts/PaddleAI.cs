@@ -26,24 +26,24 @@ public class PaddleAI : MonoBehaviour {
         float step = speed * Time.deltaTime;
         if (targetAcquired)
         {
-            if(Ball != null)
+            if (Ball != null)
             {
                 testPos = Ball.transform.position;
-            }
-            
-            if (isHorizontalMovement)
-            {
-                if(Ball.position.x <= MaxX && Ball.position.x >= MinX)
-                {
-                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(Ball.position.x, initialY, initialZ), step);
-                }
-            }
 
-            else
-            {
-                if (Ball.position.y <= MaxY && Ball.position.y >= MinY)
+                if (isHorizontalMovement)
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(initialX, Ball.position.y, initialZ), step);
+                    if (Ball.position.x <= MaxX && Ball.position.x >= MinX)
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(Ball.position.x, initialY, initialZ), step);
+                    }
+                }
+
+                else
+                {
+                    if (Ball.position.y <= MaxY && Ball.position.y >= MinY)
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(initialX, Ball.position.y, initialZ), step);
+                    }
                 }
             }
         }
@@ -52,8 +52,17 @@ public class PaddleAI : MonoBehaviour {
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(initialX, initialY, initialZ),step);
         }
-        
-        
+
+        if (resetTimer >= 2F)
+        {
+            resetTimer -= Time.deltaTime;
+        }
+        else if (resetTimer <= 0F)
+        {
+            targetAcquired = false;
+            Ball = null;
+            resetTimer = 2F;
+        }
 	}
 
     void OnTriggerStay2D(Collider2D coll)
@@ -64,8 +73,12 @@ public class PaddleAI : MonoBehaviour {
             {
                 Ball = GameObject.FindGameObjectWithTag("Ball").transform;
             }
-            
-            targetAcquired = true;
+
+            if (!targetAcquired)
+            {
+                targetAcquired = true;
+            }
+           
         }
     }
 
@@ -82,8 +95,7 @@ public class PaddleAI : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Ball")
         {
-            targetAcquired = false;
-            Ball = null;
+            paddleHit.Play();
         }
     }
 }
