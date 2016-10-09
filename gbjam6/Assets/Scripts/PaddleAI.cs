@@ -11,17 +11,17 @@ public class PaddleAI : MonoBehaviour {
     public bool targetAcquired;
     public Vector3 testPos;
     private float resetTimer;
+    private AudioSource paddleHit;
     
-	// Use this for initialization
 	void Start () {
         Ball = null;
+        paddleHit = GetComponent<AudioSource>();
         initialX = transform.position.x;
         initialY = transform.position.y;
         initialZ = transform.position.z;
         resetTimer = 0F;
     }
-	
-	// Update is called once per frame
+
 	void Update () {
         float step = speed * Time.deltaTime;
         if (targetAcquired)
@@ -70,6 +70,15 @@ public class PaddleAI : MonoBehaviour {
     }
 
     void OnTriggerExit2D(Collider2D coll)
+    {
+        if (coll.gameObject.tag == "Ball")
+        {
+            targetAcquired = false;
+            Ball = null;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Ball")
         {
