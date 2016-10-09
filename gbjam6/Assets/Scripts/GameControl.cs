@@ -14,6 +14,7 @@ public class GameControl : MonoBehaviour {
     private float ballSpawnTimer;
     private float ballSpawnTimerMax;
     public GameObject GameOnScreen, GameOverScreen;
+    private GameObject player;
     
 
 	void Start ()
@@ -61,7 +62,7 @@ public class GameControl : MonoBehaviour {
 
     void InitialSpawn()
     {
-        GameObject player = Instantiate(Player, PlayerSpawnLocation.position, Quaternion.identity) as GameObject;
+        player = Instantiate(Player, PlayerSpawnLocation.position, Quaternion.identity) as GameObject;
     }
 
     void InstantiateBall()
@@ -77,10 +78,16 @@ public class GameControl : MonoBehaviour {
 
     public IEnumerator StartDeath()
     {
+        yield return new WaitForSeconds(.1F);
+        Destroy(player);
         GameOnScreen.SetActive(false);
         GameOverScreen.SetActive(true);
         Time.timeScale = 0F;
-        yield return new WaitForSeconds(1);
-
+        FinalScoreText.text = Mathf.RoundToInt(timer).ToString();
+        if(CarryOverInfo.HighScore <= timer)
+        {
+            CarryOverInfo.HighScore = Mathf.RoundToInt(timer);
+        }
+        HighScoreText.text = CarryOverInfo.HighScore.ToString();
     }
 }

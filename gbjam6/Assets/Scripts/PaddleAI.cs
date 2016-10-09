@@ -26,7 +26,11 @@ public class PaddleAI : MonoBehaviour {
         float step = speed * Time.deltaTime;
         if (targetAcquired)
         {
-            testPos = Ball.transform.position;
+            if(Ball != null)
+            {
+                testPos = Ball.transform.position;
+            }
+            
             if (isHorizontalMovement)
             {
                 if(Ball.position.x <= MaxX && Ball.position.x >= MinX)

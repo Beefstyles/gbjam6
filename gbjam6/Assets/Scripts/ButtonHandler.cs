@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonHandler : MonoBehaviour {
 
-    void RestartGame()
+    public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

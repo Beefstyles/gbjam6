@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CarryOverInfo : MonoBehaviour {
 
-    static int HighScore;
+    public static int HighScore;
 
 	// Use this for initialization
 	void Start () {
