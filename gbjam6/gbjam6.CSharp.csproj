@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\BallSpawnPoint.cs" />
     <Compile Include="Assets\Scripts\ButtonHandler.cs" />
     <Compile Include="Assets\Scripts\CarryOverInfo.cs" />
+    <Compile Include="Assets\Scripts\DeathTrigger.cs" />
     <Compile Include="Assets\Scripts\GameControl.cs" />
     <Compile Include="Assets\Scripts\PaddleAI.cs" />
     <Compile Include="Assets\Scripts\PlayerControllerScript.cs" />

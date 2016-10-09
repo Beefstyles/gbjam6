@@ -26,7 +26,6 @@ public class PlayerControllerScript : MonoBehaviour {
 	void Update ()
     {
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-        Debug.Log(Input.GetAxis("Horizontal"));
 
         if(move.x < 0)
         {
