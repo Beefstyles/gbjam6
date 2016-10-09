@@ -11,17 +11,36 @@ public class PlayerControllerScript : MonoBehaviour {
     private AudioSource[] playerSounds;
     private bool isGrounded;
     private bool pogoUsed;
+    private bool facingRight;
+    private SpriteRenderer playerSprite;
 
 	void Start ()
     {
         rb = GetComponent<Rigidbody2D>();
         playerSounds = GetComponents<AudioSource>();
+        facingRight = true;
+        playerSprite = GetComponent<SpriteRenderer>();
     }
 	
 
 	void Update ()
     {
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+        Debug.Log(Input.GetAxis("Horizontal"));
+        if(Input.GetAxis("Horizontal") >= 0)
+        {
+            if (!facingRight)
+            {
+                playerSprite.flipY = true;
+            }
+        }
+        else
+        {
+            if (facingRight)
+            {
+                playerSprite.flipY = false;
+            }
+        }
         transform.position += move * speed * Time.deltaTime;
         if (isGrounded)
         {
