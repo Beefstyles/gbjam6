@@ -80,6 +80,11 @@ public class GameControl : MonoBehaviour {
     {
         yield return new WaitForSeconds(.1F);
         Destroy(player);
+        BallControl[] Balls = FindObjectsOfType<BallControl>();
+        foreach(var ball in Balls)
+        {
+            Destroy(ball.gameObject);
+        }
         GameOnScreen.SetActive(false);
         GameOverScreen.SetActive(true);
         Time.timeScale = 0F;

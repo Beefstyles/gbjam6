@@ -20,6 +20,7 @@ public class BallControl : MonoBehaviour {
         {
             case ("Player"):
                 StartCoroutine(gameControl.StartDeath());
+                //Destroy(gameObject);
                 break;
             case ("PogoPoint"):
                 collRb = coll.GetComponentInParent<Rigidbody2D>();
