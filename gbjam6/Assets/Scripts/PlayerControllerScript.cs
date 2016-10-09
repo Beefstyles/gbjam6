@@ -27,19 +27,16 @@ public class PlayerControllerScript : MonoBehaviour {
     {
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
         Debug.Log(Input.GetAxis("Horizontal"));
-        if(Input.GetAxis("Horizontal") >= 0)
+
+        if(move.x < 0)
         {
-            if (!facingRight)
-            {
-                playerSprite.flipY = true;
-            }
+            facingRight = false;
+            playerSprite.flipX = true;
         }
-        else
+        else if(move.x > 0)
         {
-            if (facingRight)
-            {
-                playerSprite.flipY = false;
-            }
+            facingRight = true;
+            playerSprite.flipX = false;
         }
         transform.position += move * speed * Time.deltaTime;
         if (isGrounded)
